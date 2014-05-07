@@ -1,7 +1,7 @@
 co-foreach
 ==========
 
-Run generator function in forEach function callback for each element in array
+Run generator function in each forEach loop callback for each element in array
 
 ### Installation
 
@@ -27,3 +27,6 @@ forEach(files, function * (file) {
   // handle error
 });
 ```
+
+# License
+**MIT**
