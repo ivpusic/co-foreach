@@ -1,0 +1,40 @@
+{
+  "name": "co-foreach",
+  "version": "0.0.0",
+  "description": "Run generator function in forEach function callback for each element in array",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "make"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ivpusic/co-foreach.git"
+  },
+  "keywords": [
+    "forEach",
+    "foreach",
+    "co",
+    "generator",
+    "callback",
+    "function"
+  ],
+  "author": "Ivan Pusic",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ivpusic/co-foreach/issues"
+  },
+  "homepage": "https://github.com/ivpusic/co-foreach",
+  "dependencies": {
+    "co": "~3.0.6",
+    "lodash": "~2.4.1",
+    "q": "^1.0.1"
+  },
+  "devDependencies": {
+    "mocha": "~1.18.2",
+    "co-mocha": "0.0.4",
+    "should": "~3.3.1"
+  }
+}
