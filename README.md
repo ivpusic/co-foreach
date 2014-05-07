@@ -1,7 +1,7 @@
 co-foreach
 ==========
 
-Run generator function in each forEach loop callback for each element in array
+Run generator function as forEach loop callback
 
 ### Installation
 
