@@ -1,5 +1,6 @@
 co-foreach
 ==========
+[![Build Status](https://travis-ci.org/ivpusic/co-foreach.svg?branch=master)](https://travis-ci.org/ivpusic/co-foreach)
 
 Run generator function as forEach loop callback
 
