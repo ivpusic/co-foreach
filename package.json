@@ -1,7 +1,7 @@
 {
   "name": "co-foreach",
-  "version": "1.0.1",
-  "description": "Run generator function in forEach function callback for each element in array",
+  "version": "1.0.2",
+  "description": "Run generator function as forEach loop callback",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -29,7 +29,6 @@
   "homepage": "https://github.com/ivpusic/co-foreach",
   "dependencies": {
     "co": "~3.0.6",
-    "lodash": "~2.4.1",
     "q": "^1.0.1"
   },
   "devDependencies": {
