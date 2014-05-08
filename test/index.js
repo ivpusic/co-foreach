@@ -5,7 +5,6 @@
 var fs = require('fs');
 var forEach = require('..');
 var Q = require('q');
-var _ = require('lodash');
 
 describe('co-foreach', function () {
 
@@ -29,17 +28,20 @@ describe('co-foreach', function () {
 
   it('should be able to accept generator as forEach callback', function (done) {
     files.length.should.be.exactly(2);
+    var foundCount = 0;
 
     forEach(files, function * (file) {
-      (_.contains(files, file) === true).should.be.ok;
+      (files.indexOf(file) !== -1).should.be.ok;
 
       var content = yield Q.nfcall(fs.readFile, file);
 
       content.should.be.ok;
       content.toString().should.be.ok;
-      files = _.without(files, file);
+
+      var index = files.indexOf(file);
+      foundCount = index !== -1 ? foundCount++ : foundCount;
     }).then(function () {
-      files.length.should.be.exactly(0);
+      files.length.should.be.exactly(files.length);
       done();
     }, done).done();
   });
@@ -69,7 +71,7 @@ describe('co-foreach', function () {
 
   it('should work even is normal callback is provided', function (done) {
     forEach(files, function (file) {
-      (_.contains(files, file) === true).should.be.ok;
+      (files.indexOf(file) !== -1).should.be.ok;
       file.should.be.ok;
     }).then(function () {
       done();
