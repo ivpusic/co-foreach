@@ -64,7 +64,7 @@ describe('co-foreach', function () {
     }).then(function () {
       done('Expected error');
     }, function (err) {
-      err.should.be.exactly('co-foreach accepts array as first argument!');
+      err.message.should.equal('co-foreach only accepts array as first argument!');
       done();
     });
   });
