@@ -16,7 +16,7 @@ var forEach = require('co-foreach');
 
 // Every generator callback is wrapped into co function,
 // so you can take advantage of all co features
-forEach(array, function * (item) {
+forEach(array, function * (item, idx) {
   // do something awesome with generators
 }).then(handleFinish);
 ```
@@ -30,8 +30,8 @@ var fs = require('fs');
 
 var files = ['./test/test1.txt', './test/test2.txt'];
 
-// co-foreach is returning promise 
-forEach(files, function * (file) {
+// co-foreach is returning promise
+forEach(files, function * (file, idx) {
   var content = yield Q.nfcall(fs.readFile, file);
   // do something usefull
 }).then(function () {
@@ -48,7 +48,7 @@ forEach(files, function * (file) {
 var forEach = require('co-foreach');
 
 // You can also use co-foreach with normal callbacks
-forEach(array, function (item) {
+forEach(array, function (item, idx) {
 });
 ```
 
