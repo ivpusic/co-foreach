@@ -1,6 +1,6 @@
 {
   "name": "co-foreach",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Run generator function as forEach loop callback",
   "main": "index.js",
   "directories": {
