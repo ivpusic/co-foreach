@@ -1,27 +1,37 @@
 /*jshint expr:true */
+/*jshint noyield:true */
+/* globals describe, beforeEach, it */
 
 'use strict';
 
 var fs = require('fs');
 var forEach = require('..');
-var Q = require('q');
+var bluebird = require('bluebird');
+
+function contains(array, obj) {
+    for (var i = 0; i < array.length; i++) {
+        if (array[i] === obj) {
+            return true;
+        }
+    }
+    return false;
+}
 
 describe('co-foreach', function () {
-
   var files;
 
   beforeEach(function () {
     files = ['./test/test1.txt', './test/test2.txt'];
   });
 
-  it('should return promise when running generator callback', function * () {
-    var promise = forEach(files, function (file) {});
+  it('should return promise when running generator callback', function () {
+    var promise = forEach(files, function *() {});
 
     promise.should.have.property('then');
   });
 
   it('should return promise when running normal callback', function () {
-    var promise = forEach(files, function (file) {});
+    var promise = forEach(files, function () {});
 
     promise.should.have.property('then');
   });
@@ -33,7 +43,7 @@ describe('co-foreach', function () {
     forEach(files, function * (file) {
       (files.indexOf(file) !== -1).should.be.ok;
 
-      var content = yield Q.nfcall(fs.readFile, file);
+      var content = yield bluebird.promisify(fs.readFile)(file);
 
       content.should.be.ok;
       content.toString().should.be.ok;
@@ -49,7 +59,7 @@ describe('co-foreach', function () {
   it('should be able to work if passed array is empty', function (done) {
     files = [];
 
-    forEach(files, function * (file) {
+    forEach(files, function * () {
       done('Should not go inside forEach callback!');
     }).then(function () {
       done();
@@ -59,20 +69,19 @@ describe('co-foreach', function () {
   it('should return error if first argument is not an array', function (done) {
     files = 123;
 
-    forEach(files, function (file) {
+    forEach(files, function () {
       done('Expected error!');
     }).then(function () {
       done('Expected error');
     }, function (err) {
-      err.message.should.equal('co-foreach only accepts array as first argument!');
+      err.should.equal('co-foreach only accepts array as first argument!');
       done();
     });
   });
 
   it('should work even is normal callback is provided', function (done) {
     forEach(files, function (file) {
-      (files.indexOf(file) !== -1).should.be.ok;
-      file.should.be.ok;
+      (contains(files, file)).should.be.true;
     }).then(function () {
       done();
     }, done).done();
