@@ -74,7 +74,18 @@ describe('co-foreach', function () {
     }).then(function () {
       done('Expected error');
     }).catch(function (err) {
-      err.should.equal('co-foreach only accepts array as first argument!');
+      err.should.equal('co-foreach accepts array as first argument!');
+      done();
+    });
+  });
+
+  it('should return error if second argument is not a function', function (done) {
+    var errMsg = 'co-foreach accepts function as second argument!';
+
+    forEach(files, 'non function').then(function () {
+      done('Expected error');
+    }).catch(function (err) {
+      err.should.equal(errMsg);
       done();
     });
   });
