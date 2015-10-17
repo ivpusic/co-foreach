@@ -53,7 +53,7 @@ describe('co-foreach', function () {
     }).then(function () {
       files.length.should.be.exactly(files.length);
       done();
-    }, done).done();
+    }).catch(done).done();
   });
 
   it('should be able to work if passed array is empty', function (done) {
@@ -63,7 +63,7 @@ describe('co-foreach', function () {
       done('Should not go inside forEach callback!');
     }).then(function () {
       done();
-    }, done).done();
+    }).catch(done).done();
   });
 
   it('should return error if first argument is not an array', function (done) {
@@ -73,7 +73,7 @@ describe('co-foreach', function () {
       done('Expected error!');
     }).then(function () {
       done('Expected error');
-    }, function (err) {
+    }).catch(function (err) {
       err.should.equal('co-foreach only accepts array as first argument!');
       done();
     });
@@ -84,6 +84,6 @@ describe('co-foreach', function () {
       (contains(files, file)).should.be.true;
     }).then(function () {
       done();
-    }, done).done();
+    }).catch(done).done();
   });
 });

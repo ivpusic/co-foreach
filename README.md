@@ -37,7 +37,7 @@ forEach(files, function * (file, idx) {
 }).then(function () {
   // co-foreach is returning promise which is fulfilled
   // after all generator functions are successfully finished
-}, function (err) {
+}).catch(function (err) {
   // handle error
 });
 ```
